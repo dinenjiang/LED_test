@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "gpio.h"
+#include "stdbool.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -27,7 +28,10 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+typedef struct{
+	GPIO_TypeDef *port;
+	uint16_t pin;
+}sLedPara_t;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -43,6 +47,17 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+sLedPara_t ledpara[]={
+	{LED0_GPIO_Port, LED0_Pin},
+	{LED1_GPIO_Port, LED1_Pin},
+	{LED2_GPIO_Port, LED2_Pin},
+	{LED3_GPIO_Port, LED3_Pin},
+	{LED4_GPIO_Port, LED4_Pin},
+	{LED5_GPIO_Port, LED5_Pin},
+	{LED6_GPIO_Port, LED6_Pin},
+	{LED7_GPIO_Port, LED7_Pin},
+
+};
 
 /* USER CODE END PV */
 
@@ -92,15 +107,31 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-	int a = 0;
+  int ledNum =8;
+  for(int i = 0; i < ledNum; i++){
+	HAL_GPIO_WritePin(ledpara[i].port, ledpara[i].pin, GPIO_PIN_SET);
+  }
+  
+	int step=0;
   while (1)
   {
-		a++;
-		if(a){
-			HAL_Delay(500);
-		}
-    /* USER CODE END WHILE */
+		
+		//LED on
+		HAL_GPIO_WritePin(ledpara[step].port, ledpara[step].pin, GPIO_PIN_RESET);//set=off, reset=on
+		//delay 500ms
+		HAL_Delay(500);
+		//LED off
+		HAL_GPIO_WritePin(ledpara[step].port, ledpara[step].pin, GPIO_PIN_SET);//set=off, reset=on
 
+		
+
+    /* USER CODE END WHILE */
+	step++;
+		if(step >= ledNum) {
+			step = 0;
+		}
+//		step = (step >= 8)? 0: step++;
+		
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
