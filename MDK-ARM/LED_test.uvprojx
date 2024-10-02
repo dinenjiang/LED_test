@@ -413,6 +413,16 @@
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f1xx_hal_msp.c</FilePath>
             </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>Dtimer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\Dtimer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
