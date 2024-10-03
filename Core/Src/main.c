@@ -79,7 +79,7 @@ PUTCHAR_PROTOTYPE
 
 /**
   * @brief  The application entry point.
-  * @retval int
+  * @retval intq
   */
 int main(void)
 {
@@ -113,7 +113,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  printf("LED, 20241003\n");
+  printf("LED,v0,20241003\n");
   led_init();
 
   while (1)

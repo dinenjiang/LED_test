@@ -33,7 +33,7 @@ sLedPara_t ledpara[]={
 };
 
 const int gLedTotal = 8;
-static int gstep = 0;
+static eLedStep_t gstep = eLedStep_Init;
 static int gledNo = 0;
 uint32_t beginTime;
 
@@ -86,14 +86,28 @@ void led_loop()
 				
 				gledNo++;					
 				if (gledNo >= gLedTotal){
-					gledNo = 0;					
-					gstep = eLedStep_forward;
+					gledNo = 7;					
+					gstep = eLedStep_backward;
 				};
 			}
 				break;
+/*eLedStep_backward: (7:on 0:off) -> (6:on 7:off)..(1:on 2:off)->(0:on 1:off)
+*/
+			case eLedStep_backward:{
+				//LED on
+				int lastledNo = (gledNo == (gLedTotal - 1))? 0: (gledNo + 1);	
+				printf("%s=>step=%d, gledNo=%d lastledNo=%d\n", __func__, gstep, gledNo, lastledNo);
+				ledCt(gledNo, true);
 
-			case eLedStep_backward:
-
+				//LED off	
+				ledCt(lastledNo, false);
+				
+				gledNo--;					
+				if (gledNo < 0){
+					gledNo = 0;					
+					gstep = eLedStep_forward;
+				}
+			}
 				break;
 
 			default:
