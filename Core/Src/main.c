@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
 #include "led.h"
+#include "maincpp.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -79,7 +80,7 @@ PUTCHAR_PROTOTYPE
 
 /**
   * @brief  The application entry point.
-  * @retval intq
+  * @retval int
   */
 int main(void)
 {
@@ -114,19 +115,20 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   printf("LED,v0,20241003\n");
-  led_init();
+  maincpp();
+  //led_init();
 
-  while (1)
-  {
+//  while (1)
+//  {
 		
 
 		
-	led_loop();
+//	led_loop();
 
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  }
+//  }
   /* USER CODE END 3 */
 }
 

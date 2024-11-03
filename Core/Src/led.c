@@ -62,7 +62,7 @@ eLedStep_forward: (7:off 1:on) -> (1:off 2:on)..(6:off 7:on)
 
 void led_loop()
 {
-	if(Dtimer_isUp(beginTime, 250)) {
+	if(Dtimer_isUp(beginTime, 1)) {
 		beginTime = Dtimerstart();
 
 		switch(gstep){
